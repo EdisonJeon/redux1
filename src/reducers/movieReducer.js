@@ -10,7 +10,7 @@ export const initialState = {
   movies: movies,
   appTitle: "IMDB Movie Database",
   newMovie: {
-    id: uuidv4(),
+    id: movies.length,
     title: "",
     director: "",
     genre: "",
@@ -26,7 +26,7 @@ export const movieReducer = (state = initialState, action) => {
         ...state,
         movies: [...state.movies, action.payload],
         newMovie: {
-          id: uuidv4(),
+          id: movies.length += 1,
           title: "",
           director: "",
           genre: "",
