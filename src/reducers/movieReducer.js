@@ -4,11 +4,13 @@ import {
   UPDATE_NEW_MOVIE,
 } from "../actions/movieActions.js";
 import movies from "./../data.js";
+import { v4 as uuidv4 } from "uuid";
 
 export const initialState = {
   movies: movies,
   appTitle: "IMDB Movie Database",
   newMovie: {
+    id: uuidv4(),
     title: "",
     director: "",
     genre: "",
@@ -24,6 +26,7 @@ export const movieReducer = (state = initialState, action) => {
         ...state,
         movies: [...state.movies, action.payload],
         newMovie: {
+          id: uuidv4(),
           title: "",
           director: "",
           genre: "",
@@ -34,13 +37,7 @@ export const movieReducer = (state = initialState, action) => {
     case UPDATE_NEW_MOVIE:
       return {
         ...state,
-        newMovie: {
-          title: action.payload,
-          director: action.payload,
-          genre: action.payload,
-          metascore: action.payload,
-          description: action.payload,
-        },
+        newMovie: action.payload,
       };
     case DELETE_MOVIE:
       return {

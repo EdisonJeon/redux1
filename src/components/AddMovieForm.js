@@ -7,9 +7,17 @@ import { Link, useHistory } from "react-router-dom";
 const AddMovieForm = (props) => {
   const { title, director, genre, metascore, description } = props.newMovie;
   const { push } = useHistory();
+  console.log(props.newMovie);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    props.updateNewMovie({ ...props.newMovie, [name]: value });
+  };
 
   const handleSubmit = (e) => {
-    props.addMovie(newMovie);
+    e.preventDefault();
+    props.addMovie(props.newMovie);
+    push("/movies");
   };
 
   return (
@@ -26,7 +34,7 @@ const AddMovieForm = (props) => {
                 <label>Title</label>
                 <input
                   value={title}
-                  onChange={(e) => props.updateNewMovie(e.target.value)}
+                  onChange={handleChange}
                   name="title"
                   type="text"
                   className="form-control"
@@ -36,7 +44,7 @@ const AddMovieForm = (props) => {
                 <label>Director</label>
                 <input
                   value={director}
-                  onChange={(e) => props.updateNewMovie(e.target.value)}
+                  onChange={handleChange}
                   name="director"
                   type="text"
                   className="form-control"
@@ -46,7 +54,7 @@ const AddMovieForm = (props) => {
                 <label>Genre</label>
                 <input
                   value={genre}
-                  onChange={(e) => props.updateNewMovie(e.target.value)}
+                  onChange={handleChange}
                   name="genre"
                   type="text"
                   className="form-control"
@@ -56,7 +64,7 @@ const AddMovieForm = (props) => {
                 <label>Metascore</label>
                 <input
                   value={metascore}
-                  onChange={(e) => props.updateNewMovie(e.target.value)}
+                  onChange={handleChange}
                   name="metascore"
                   type="number"
                   className="form-control"
@@ -66,7 +74,7 @@ const AddMovieForm = (props) => {
                 <label>Description</label>
                 <textarea
                   value={description}
-                  onChange={(e) => props.updateNewMovie(e.target.value)}
+                  onChange={handleChange}
                   name="description"
                   className="form-control"
                 ></textarea>
