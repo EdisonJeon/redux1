@@ -4,7 +4,11 @@ import {
   UPDATE_NEW_MOVIE,
 } from "../actions/movieActions.js";
 import movies from "./../data.js";
+
+/* 
 import { v4 as uuidv4 } from "uuid";
+id: uuidv4();
+*/
 
 export const initialState = {
   movies: movies,
@@ -26,7 +30,7 @@ export const movieReducer = (state = initialState, action) => {
         ...state,
         movies: [...state.movies, action.payload],
         newMovie: {
-          id: movies.length += 1,
+          id: (movies.length += 1),
           title: "",
           director: "",
           genre: "",
